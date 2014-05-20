@@ -1,0 +1,65 @@
+
+mixin ie(condition)
+  | <!--[!{condition}]>
+  block
+  | <![endif]-->
+
+doctype html
+html(ng-app="motivatr")
+  head
+    if locals.pagetitle
+      title= pagetitle + ' | ' + site.title + ': ' + site.tagline
+    else
+      title= site.title + ': ' + site.tagline
+
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1, user-scalable=no")
+
+    link(rel="stylesheet", href="/stylesheets/css/style.css")
+    link(href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,800italic,300,400,600,800", rel="stylesheet", type="text/css")
+
+    +ie('if gte IE 9')
+      style(type="text/css") body {filter: none;}
+    +ie('if IE 8')
+      style(type="text/css") body {background: #484848;}
+      script(type="text/javascript", src="/scripts/vendor/respond.js")
+
+    link(rel="shortcut icon", href="/images/icon/favicon.ico", type="image/x-icon")
+    link(rel="apple-touch-icon", href="/images/icon/apple-touch-icon.png")
+    link(rel="apple-touch-icon", sizes="57x57", href="/images/icon/apple-touch-icon-57x57.png")
+    link(rel="apple-touch-icon", sizes="72x72", href="/images/icon/apple-touch-icon-72x72.png")
+    link(rel="apple-touch-icon", sizes="76x76", href="/images/icon/apple-touch-icon-76x76.png")
+    link(rel="apple-touch-icon", sizes="114x114", href="/images/icon/apple-touch-icon-114x114.png")
+    link(rel="apple-touch-icon", sizes="120x120", href="/images/icon/apple-touch-icon-120x120.png")
+    link(rel="apple-touch-icon", sizes="144x144", href="/images/icon/apple-touch-icon-144x144.png")
+    link(rel="apple-touch-icon", sizes="152x152", href="/images/icon/apple-touch-icon-152x152.png")
+    link(rel="apple-touch-icon", sizes="196x196", href="/images/icon/favicon-196x196.png")
+
+    script(type="text/javascript", src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+    script(type="text/javascript", src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js")
+    script(type="text/javascript", src="/scripts/vendor/modernizr-2.7.0.min.js")
+    script(type="text/javascript", src="/core.js")
+    script(type="text/javascript", src="/scripts/vendor/autofill-event.js")
+
+  body(class="#{pageTitle}", ng-controller="mainController")
+    if user
+      nav(id="status")
+        | Logged in as <a href="/profile">#{user.username}</a>. <a ng-click="userLogout()">Log out</a> | <a href="/share">Share a thought</a>
+        if user.admin
+          |  | 
+          a(href="/users") Admin
+    header(id="header")
+      block header
+        a(href="/")
+          #logo-container
+            img(id="logo", src="/images/logo-lg.png", alt="Motivatr logo")
+            h1(id="sitename")= site.title
+            h2(id="tagline")= site.tagline
+
+    section(id="content")
+      block content
+
+    section(id="footer")
+      block footer
+
+    script(type="text/javascript", src="/scripts/main.js")

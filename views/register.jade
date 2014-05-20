@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  #register-form  
+    p(class="msg") Create an account.
+
+    form(class="form-default", name="registerForm", novalidate, autocomplete="off")
+      fieldset
+        input(type="text", name="firstname", ng-model="formData.firstname", placeholder="First name(s)", required, autocapitalize)
+        p(class="msg warning", ng-show="registerForm.firstname.$invalid && !registerForm.firstname.$pristine") Please enter a first name.
+        input(type="text", name="lastname", ng-model="formData.lastname", placeholder="Last name", required, autocapitalize)
+        p(class="msg warning", ng-show="registerForm.lastname.$invalid && !registerForm.lastname.$pristine") Please enter a last name.
+      fieldset
+        input(type="text", name="username", ng-model="formData.username", ng-minlength="3", ng-maxlength="15", placeholder="Username", required)
+        p(class="msg warning", ng-show="usernameErr") {{usernameErr}}
+        p(class="msg warning", ng-show="registerForm.username.$error.required && !registerForm.username.$pristine") Please enter a username.  
+        p(class="msg warning", ng-show="registerForm.username.$error.minlength && !registerForm.username.$error.required") Your username must be more than 3 characters.
+        p(class="msg warning", ng-show="registerForm.username.$error.maxlength") Your username must be less than 15 characters.
+        input(type="password", name="password", ng-model="formData.password", placeholder="Password", required)
+        input(type="password", name="passwordconf", ng-model="formData.passwordconf", placeholder="Repeat password", required)
+        p(class="msg warning", ng-show="passwordErr") {{passwordErr}}
+      fieldset
+        input(type="email", name="email", ng-model="formData.email", placeholder="Email address", required)
+        p(class="msg warning", ng-show="registerForm.email.$error.required && !registerForm.email.$pristine") Please enter an email address. 
+        p(class="msg warning", ng-show="registerForm.email.$invalid && !registerForm.email.$pristine && !registerForm.email.$error.required") Please enter a valid email address.
+      fieldset
+        input(type="submit", value="Register", ng-click="createUser(registerForm.$valid)", ng-disabled="registerForm.$invalid", required)
+        p or <a href="/login">Login</a>
+
+block footer

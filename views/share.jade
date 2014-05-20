@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  #share-form
+    if msg
+      p(class="msg")= msg
+    else
+      p(class="msg") Share a thought
+    form(class="form-default", name="shareForm")
+      fieldset
+        input(type="text", ng-model="formData.text", placeholder="Today I was inspired by...", required)
+        p(class="msg", ng-show="successMsg") {{successMsg}}
+      fieldset
+        input(type="submit", value="Share", ng-disabled="shareForm.$invalid", ng-click="createThought(shareForm.$valid)", required)
+        p or <a href="/inspire">Be inspired</a>
+
+block footer

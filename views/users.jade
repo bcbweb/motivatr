@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  table
+    thead
+      tr
+        td Username
+        td First name(s)
+        td Last name
+        td Password
+        td Email
+        td 
+    tbody
+      tr(ng-repeat="user in users")
+        td {{user.username}}
+        td {{user.firstname}}
+        td {{user.lastname}}
+        td {{user.password}}
+        td {{user.email}}
+        td <a ng-click="deleteUser(user._id)">Delete</a>
+
+block footer

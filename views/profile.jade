@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  p(class="msg") Your profile
+
+  #interests-form(ng-init="getInterests('#{user.username}')")
+
+    p(class="msg warning", ng-show="interestErr") {{interestErr}}
+
+    form(class="form-tabular", name="interestsForm")
+      fieldset.title <h3>Interests</h3>
+      fieldset.collapse-area
+        ul
+          li(ng-repeat="interest in interests track by $index") {{interest}} <a ng-click="deleteInterest(interest)">Delete</a>
+          li(ng-show="interests.length == 0") No interests have been added.
+      fieldset
+        input(type="text", name="interest", placeholder="Add a keyword", ng-model="formData.interest", required)
+      fieldset
+        input(type="submit", value="Add", ng-disabled="interestsForm.$invalid", ng-click="addInterest(interestsForm.$valid)", required)
+
+  table
+    thead
+      tr
+        th(colspan="2") <h3>Details</h3>
+    tbody
+      tr
+        td Username
+      tr
+        td
+          input(type="text", value="#{user.username}", disabled="disabled")
+      tr
+        td First name(s)
+      tr
+        td
+          input(type="text", name="firstname", ng-model="formData.firstname", placeholder="#{user.firstname}", autocapitalize)
+      tr
+        td Last name
+      tr
+        td
+          input(type="text", name="lastname", ng-model="formData.lastname", placeholder="#{user.lastname}", autocapitalize)
+      tr(ng-show="updateMsg")
+        td
+          p(class="msg") {{updateMsg}}
+      tr
+        td
+          input(type="submit", value="Update", ng-click="updateUser()", required)
+  
+block footer

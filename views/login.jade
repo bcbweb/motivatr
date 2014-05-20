@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  #login-form
+    if msg
+      p(class="msg", ng-show="!loginErr")= msg
+    else
+      p(class="msg" ng-show="!loginErr") Please log in.
+    p(class="msg warning", ng-show="loginErr") {{loginErr}}
+
+    form(class="form-default", name="loginForm", autocomplete="off")
+      fieldset
+        input(type="text", name="username#{token}", placeholder="Username", ng-model="formData.username", required, autocomplete="off")
+        input(type="password", name="password#{token}", placeholder="Password", ng-model="formData.password", required, autocomplete="off")
+      fieldset
+        input(type="submit", value="Log in", ng-disabled="loginForm.$invalid", ng-click="userLogin(loginForm.$valid)", required)
+        p not <a href="/register">Registered</a>?
+
+block footer

@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  p(class="msg") Recently shared
+  ul
+    li(ng-repeat="thought in thoughts | orderBy:'date':true")
+      | <h3>{{thought.author}}</h3>
+      | {{thought.text}} 
+      if user.admin
+        a(href="#" ng-click="deleteThought(thought._id)") Delete
+
+  p(ng-show="thoughts.length == 0") Nothing has been shared yet.
+
+block footer

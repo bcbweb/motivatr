@@ -1,0 +1,23 @@
+{
+  "name"                      : "motivatr",
+  "version"                   : "0.0.0",
+  "description"               : "Network for ambitions",
+  "main"                      : "server.js",
+  "author"                    : "Benjamin Brown",
+  "dependencies"              : {
+    "express"                 : "~3.4.4",
+    "jade"                    : "*",
+    "mongoose"                : "~3.6.2",
+    "connect-mongo"           : "0.4.1",
+    "password-hash"           : "1.2.1"
+  },
+  "devDependencies"           : {
+    "grunt"                   : "~0.4.1",
+    "grunt-contrib-clean"     : "~0.5.0",
+    "grunt-contrib-jshint"    : "~0.6.4",
+    "grunt-contrib-uglify"    : "~0.2.4",
+    "grunt-contrib-watch"     : "~0.5.3",
+    "grunt-contrib-compass"   : "~0.6.0",
+    "grunt-express-server"    : "~0.4.13"
+  }
+}
