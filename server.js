@@ -8,7 +8,7 @@ var passwordHash = require('password-hash');
 var port = process.env.PORT || 3000;
 
 // Configuration ========================================
-mongoose.connect('mongodb://motivatr:4v417_6^=&zd2T0@novus.modulusmongo.net:27017/e8xobIde'); // connect to mongoDB at modulus.io
+var dbConn = mongoose.connect('mongodb://motivatr:Loomer92@novus.modulusmongo.net:27017/e8xobIde'); // connect to mongoDB at modulus.io
 
 // Middleware
 app.configure(function() {
@@ -20,7 +20,7 @@ app.configure(function() {
   app.use(express.cookieParser('fsd345'));        // Use cookies
   app.use(express.session({                       // Use sessions with Mongo Store
     store: new MongoStore({
-      url: 'mongodb://motivatr:4v417_6^=&zd2T0@novus.modulusmongo.net:27017/e8xobIde',
+      'db': dbConn,
     }, function () {
       console.log("db connection open");
     }),

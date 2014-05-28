@@ -2,6 +2,7 @@
   "name"                      : "motivatr",
   "version"                   : "0.0.0",
   "description"               : "Network for ambitions",
+  "engine"                    : "node 0.6.*",
   "main"                      : "server.js",
   "author"                    : "Benjamin Brown",
   "dependencies"              : {
